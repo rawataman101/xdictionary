@@ -12,7 +12,8 @@ const words = [
 function App() {
   const [search, setSearch] = useState("");
   const [meaning, setMeaning] = useState("");
-  const [hasMeaning, setHasMeaning] = useState(false);
+  const [wordFound, setWordFound] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleSearch = () => {
     const foundWord = words.find(
@@ -21,10 +22,11 @@ function App() {
 
     if (foundWord) {
       setMeaning(foundWord.meaning);
+      setWordFound(true);
     } else {
-      setMeaning("Word not found in the Dictionary.");
+      setWordFound(false);
     }
-    setHasMeaning(true);
+    setIsClicked(true);
   };
   return (
     <div className="App">
@@ -37,7 +39,15 @@ function App() {
       />
       <button onClick={handleSearch}>Search</button>
       <h4>Definition:</h4>
-      {hasMeaning && <p>{meaning}</p>}
+      {isClicked ? (
+        wordFound ? (
+          <p>{meaning}</p>
+        ) : (
+          <p>Word not found in the dictionary.</p>
+        )
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
