@@ -45,9 +45,7 @@ function App() {
         ) : (
           <p>Word not found in the dictionary.</p>
         )
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   );
 }
